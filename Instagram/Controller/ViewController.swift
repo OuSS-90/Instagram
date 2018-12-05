@@ -7,15 +7,22 @@
 //
 
 import UIKit
-import Firebase
 
 class ViewController: UIViewController {
     
     let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus_photo")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleAddPhoto), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleAddPhoto() {
+        let pickerImage = UIImagePickerController()
+        pickerImage.delegate = self
+        pickerImage.allowsEditing = true
+        present(pickerImage, animated: true)
+    }
     
     let emailTextField: UITextField = {
         let tf = UITextField()
@@ -77,12 +84,13 @@ class ViewController: UIViewController {
         guard let username = usernameTextField.text, username.count > 0 else { return }
         guard let password = passwordTextField.text, password.count > 0 else { return }
         
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            if error != nil {
-                return
+        guard let image = addPhotoButton.imageView?.image else { return }
+        
+        AuthService.instance.register(withEmail: email, password: password, username: username, image: image, completion: { (success) in
+            if success {
+                
             }
-            
-        }
+        })
     }
 
     override func viewDidLoad() {
@@ -107,5 +115,25 @@ class ViewController: UIViewController {
         vStackView.anchor(top: addPhotoButton.bottomAnchor, left: view.leadingAnchor, bottom: nil, right: view.trailingAnchor, paddingTop: 20, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: 0, height: 200)
     }
 
+}
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            addPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            addPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        addPhotoButton.layer.cornerRadius = addPhotoButton.frame.width / 2
+        addPhotoButton.layer.masksToBounds = true
+        addPhotoButton.layer.borderColor = UIColor.black.cgColor
+        addPhotoButton.layer.borderWidth = 2
+        
+        dismiss(animated: true)
+    }
+    
 }
 
