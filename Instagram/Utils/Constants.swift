@@ -15,5 +15,5 @@ public let kID = "id"
 //User
 public let kEMAIL = "email"
 public let kUSERNAME = "username"
-public let kPROFILE = "avatar"
+public let kIMAGEURL = "profileImageURL"
 public let kCURRENTUSER = "currentUser"

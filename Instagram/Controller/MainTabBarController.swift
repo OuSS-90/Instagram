@@ -12,7 +12,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let layout = UICollectionViewLayout()
+        let layout = UICollectionViewFlowLayout()
         let userProfile = UserProfileController(collectionViewLayout: layout)
         let navController = UINavigationController(rootViewController: userProfile)
         
@@ -21,6 +21,5 @@ class MainTabBarController: UITabBarController {
         tabBar.tintColor = UIColor.black
         
         viewControllers = [navController]
-        
     }
 }

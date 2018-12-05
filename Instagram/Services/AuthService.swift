@@ -15,7 +15,7 @@ class AuthService {
     func currentUser() -> User? {
         if Auth.auth().currentUser != nil {
             if let dic = UserDefaults.standard.object(forKey: kCURRENTUSER) as? [String : Any] {
-                return User(_dictionary: dic)
+                return User(dictionary: dic)
             }
         }
         return nil
@@ -41,10 +41,10 @@ class AuthService {
                     kID : fuser.uid,
                     kEMAIL : fuser.email!,
                     kUSERNAME : username,
-                    kPROFILE : imageURL
+                    kIMAGEURL : imageURL
                 ]
                 
-                let user = User(_dictionary: dic)
+                let user = User(dictionary: dic)
                 self.saveUserToFirestore(user: user)
                 self.saveUserLocally(dictionary: dic)
                 

@@ -12,21 +12,21 @@ struct User {
     let id: String
     let email: String
     let username: String
-    let profileImage: String
+    let profileImageURL: String
     
     var dictionary: [String : Any] {
         return [
             kID : id,
             kEMAIL : email,
             kUSERNAME : username,
-            kPROFILE : profileImage
+            kIMAGEURL : profileImageURL
         ]
     }
     
-    init(_dictionary: [String : Any]) {
-        id = _dictionary[kID] as! String
-        email = _dictionary[kEMAIL] as? String ?? ""
-        username = _dictionary[kUSERNAME] as? String ?? ""
-        profileImage = _dictionary[kPROFILE] as? String ?? ""
+    init(dictionary: [String : Any]) {
+        id = dictionary[kID] as! String
+        email = dictionary[kEMAIL] as? String ?? ""
+        username = dictionary[kUSERNAME] as? String ?? ""
+        profileImageURL = dictionary[kIMAGEURL] as? String ?? ""
     }
 }

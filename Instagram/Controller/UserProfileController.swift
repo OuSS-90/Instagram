@@ -8,16 +8,31 @@
 
 import UIKit
 
-class UserProfileController: UICollectionViewController {
+class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    let indentifier = "headerId"
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.backgroundColor = .white
+        collectionView.backgroundColor = .white
+        //collectionView.delegate = self
+        //collectionView.dataSource = self
+        collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: indentifier)
         
-        if let user = AuthService.instance.currentUser() {
-            navigationItem.title = user.username
-        }
-        
+        user = AuthService.instance.currentUser()
+            
+        navigationItem.title = user?.username
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: indentifier, for: indexPath) as! UserProfileHeader
+        header.user = user
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 200)
     }
 }
