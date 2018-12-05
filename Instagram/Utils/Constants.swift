@@ -8,9 +8,12 @@
 
 import Foundation
 
+let userDefaults = UserDefaults.standard
+
 public let kID = "id"
 
 //User
 public let kEMAIL = "email"
 public let kUSERNAME = "username"
 public let kPROFILE = "avatar"
+public let kCURRENTUSER = "currentUser"
