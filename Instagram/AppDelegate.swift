@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         
         if Auth.auth().currentUser == nil {
-            let logInController = LoginnController()
+            let logInController = LoginController()
             let navController = UINavigationController(rootViewController: logInController)
             window?.rootViewController = navController
         } else {
