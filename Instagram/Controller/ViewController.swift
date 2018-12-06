@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         
         view.addSubview(addPhotoButton)
         
-        addPhotoButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
+        addPhotoButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 20, width: 140, height: 140)
         addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         setupTextFields()
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
         
         view.addSubview(vStackView)
                 
-        vStackView.anchor(top: addPhotoButton.bottomAnchor, left: view.leadingAnchor, bottom: nil, right: view.trailingAnchor, paddingTop: 20, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: 0, height: 200)
+        vStackView.anchor(top: addPhotoButton.bottomAnchor, left: view.leadingAnchor, right: view.trailingAnchor, paddingTop: 20, paddingLeft: 30, paddingRight: 30, height: 200)
     }
 
 }
