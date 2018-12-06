@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SignInController: UIViewController {
     
     let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -96,6 +96,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
         view.addSubview(addPhotoButton)
         
         addPhotoButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 20, width: 140, height: 140)
@@ -117,7 +119,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SignInController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         

@@ -53,6 +53,20 @@ class AuthService {
         }
     }
     
+    func signOut(completion: @escaping (_ success: Bool) -> ()) {
+        do {
+            try Auth.auth().signOut()
+            
+            userDefaults.removeObject(forKey: kCURRENTUSER)
+            userDefaults.synchronize()
+            
+            completion(true)
+        } catch _ {
+            completion(false)
+        }
+        
+    }
+    
     func saveUserToFirestore(user: User) {
         reference(.Users).document(user.id).setData(user.dictionary) { (error) in
             print("error is \(String(describing: error?.localizedDescription))")

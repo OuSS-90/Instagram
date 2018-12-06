@@ -26,8 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         db.settings = settings
         
         window = UIWindow()
-        window?.rootViewController = MainTabBarController()
         
+        if Auth.auth().currentUser == nil {
+            let logInController = LogInController()
+            let navController = UINavigationController(rootViewController: logInController)
+            window?.rootViewController = navController
+        } else {
+            window?.rootViewController = MainTabBarController()
+        }
         
         return true
     }

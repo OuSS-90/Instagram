@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		A8E1E2D614B3190813530F23 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51F8D7E380DA4DF3FF6E58D /* Pods_Instagram.framework */; };
 		CD45A24321B7243D00C47508 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45A24221B7243D00C47508 /* AppDelegate.swift */; };
-		CD45A24521B7243D00C47508 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45A24421B7243D00C47508 /* ViewController.swift */; };
+		CD45A24521B7243D00C47508 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45A24421B7243D00C47508 /* SignInController.swift */; };
 		CD45A24821B7243D00C47508 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD45A24621B7243D00C47508 /* Main.storyboard */; };
 		CD45A24A21B7243E00C47508 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD45A24921B7243E00C47508 /* Assets.xcassets */; };
 		CD45A24D21B7243E00C47508 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD45A24B21B7243E00C47508 /* LaunchScreen.storyboard */; };
+		CD46429121B9867D00EF0943 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46429021B9867D00EF0943 /* LogInController.swift */; };
 		CD8491C621B7E5E600E0B2A1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491C521B7E5E600E0B2A1 /* Extensions.swift */; };
 		CD8491C821B7EC8500E0B2A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD8491C721B7EC8500E0B2A1 /* GoogleService-Info.plist */; };
 		CD8491CE21B7FA3D00E0B2A1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491CD21B7FA3D00E0B2A1 /* AuthService.swift */; };
@@ -30,11 +31,12 @@
 		BDB05CCE97E528E4A627C5DB /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		CD45A23F21B7243D00C47508 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD45A24221B7243D00C47508 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD45A24421B7243D00C47508 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CD45A24421B7243D00C47508 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		CD45A24721B7243D00C47508 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD45A24921B7243E00C47508 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD45A24C21B7243E00C47508 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD45A24E21B7243E00C47508 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD46429021B9867D00EF0943 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		CD8491C521B7E5E600E0B2A1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CD8491C721B7EC8500E0B2A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD8491CD21B7FA3D00E0B2A1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -126,7 +128,8 @@
 		CD8491C921B7F9CE00E0B2A1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CD45A24421B7243D00C47508 /* ViewController.swift */,
+				CD45A24421B7243D00C47508 /* SignInController.swift */,
+				CD46429021B9867D00EF0943 /* LogInController.swift */,
 				CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */,
 				CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */,
 			);
@@ -292,10 +295,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD8491DC21B8511B00E0B2A1 /* UserProfileHeader.swift in Sources */,
+				CD46429121B9867D00EF0943 /* LogInController.swift in Sources */,
 				CD8491D221B8195500E0B2A1 /* FCollectionRef.swift in Sources */,
 				CD8491D021B80FE200E0B2A1 /* StorageService.swift in Sources */,
 				CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */,
-				CD45A24521B7243D00C47508 /* ViewController.swift in Sources */,
+				CD45A24521B7243D00C47508 /* SignInController.swift in Sources */,
 				CD8491C621B7E5E600E0B2A1 /* Extensions.swift in Sources */,
 				CD45A24321B7243D00C47508 /* AppDelegate.swift in Sources */,
 				CD8491CE21B7FA3D00E0B2A1 /* AuthService.swift in Sources */,
