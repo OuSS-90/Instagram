@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignInController: UIViewController {
+class SignUpController: UIViewController {
     
     let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -92,6 +92,24 @@ class SignInController: UIViewController {
             }
         })
     }
+    
+    let alreadyHaveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        
+        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)
+            ]))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        
+        button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func handleShowLogin() {
+        _ = navigationController?.popViewController(animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,9 +117,12 @@ class SignInController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(addPhotoButton)
+        view.addSubview(alreadyHaveAccountButton)
         
         addPhotoButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 20, width: 140, height: 140)
         addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        alreadyHaveAccountButton.anchor(left: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.trailingAnchor, height: 50)
         
         setupTextFields()
     }
@@ -119,7 +140,7 @@ class SignInController: UIViewController {
 
 }
 
-extension SignInController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SignUpController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
