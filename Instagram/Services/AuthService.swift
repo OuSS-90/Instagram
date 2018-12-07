@@ -53,6 +53,26 @@ class AuthService {
         }
     }
     
+    func login(withEmail email: String, password: String, completion: @escaping (_ success: Bool) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (result, error) in
+            
+            if error != nil {
+                completion(false)
+                return
+            }
+            
+            guard let fuser = result?.user else {
+                completion(false)
+                return
+            }
+            
+            //get user from firebase and save locally
+            self.fetchUser(userId: fuser.uid, completion: {
+                completion(true)
+            })
+        })
+    }
+    
     func signOut(completion: @escaping (_ success: Bool) -> ()) {
         do {
             try Auth.auth().signOut()
@@ -78,11 +98,12 @@ class AuthService {
         UserDefaults.standard.synchronize()
     }
     
-    func fetchUser(user: User) {
-        reference(.Users).document(user.id).getDocument { (snapshot, error) in
+    func fetchUser(userId: String, completion: @escaping () -> Void) {
+        reference(.Users).document(userId).getDocument { (snapshot, error) in
             guard let snapshot = snapshot else { return }
             if snapshot.exists {
                 self.saveUserLocally(dictionary: snapshot.data())
+                completion()
             }
         }
     }

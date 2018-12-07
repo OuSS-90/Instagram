@@ -36,7 +36,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
             AuthService.instance.signOut(completion: { (success) in
                 if success {
-                    
+                    let logInController = LoginController()
+                    let navController = UINavigationController(rootViewController: logInController)
+                    UIApplication.setRootView(navController)
                 }
             })
         }))

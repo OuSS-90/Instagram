@@ -30,6 +30,8 @@ class SignUpController: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = .emailAddress
+        tf.autocapitalizationType = .none
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -88,7 +90,7 @@ class SignUpController: UIViewController {
         
         AuthService.instance.register(withEmail: email, password: password, username: username, image: image, completion: { (success) in
             if success {
-                
+                UIApplication.setRootView(MainTabBarController())
             }
         })
     }

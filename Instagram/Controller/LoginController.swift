@@ -28,6 +28,8 @@ class LoginController: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = .emailAddress
+        tf.autocapitalizationType = .none
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -70,6 +72,12 @@ class LoginController: UIViewController {
     @objc func handleLogin() {
         guard let email = emailTextField.text, email.count > 0 else { return }
         guard let password = passwordTextField.text, password.count > 0 else { return }
+        
+        AuthService.instance.login(withEmail: email, password: password) { (success) in
+            if success {
+                UIApplication.setRootView(MainTabBarController())
+            }
+        }
     }
     
     let dontHaveAccountButton: UIButton = {
@@ -110,7 +118,7 @@ class LoginController: UIViewController {
         
         view.addSubview(vStackView)
         
-        vStackView.anchor(top: logoContainerView.bottomAnchor, left: view.leadingAnchor, right: view.trailingAnchor, paddingTop: 40, paddingLeft: 30, paddingRight: 30, height: 140)
+        vStackView.anchor(top: logoContainerView.bottomAnchor, left: view.leadingAnchor, right: view.trailingAnchor, paddingTop: 40, paddingLeft: 30, paddingRight: 30, height: 147)
     }
     
 }
