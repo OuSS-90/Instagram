@@ -8,9 +8,12 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
         
         let homeNavController = templateNavController(unselectedImg: #imageLiteral(resourceName: "home_unselected"), selectedImg: #imageLiteral(resourceName: "home_selected"), rootViewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
         
@@ -40,5 +43,19 @@ class MainTabBarController: UITabBarController {
         navController.tabBarItem.image = unselectedImg
         navController.tabBarItem.selectedImage = selectedImg
         return navController
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.firstIndex(of: viewController)
+        
+        if index == 2 {
+            let layout = UICollectionViewFlowLayout()
+            let photoController = PhotoSelectorController(collectionViewLayout: layout)
+            let navController = UINavigationController(rootViewController: photoController)
+            present(navController, animated: true)
+            return false
+        }
+        
+        return true
     }
 }

@@ -24,6 +24,7 @@
 		CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */; };
 		CD8491DA21B8414E00E0B2A1 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */; };
 		CD8491DC21B8511B00E0B2A1 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */; };
+		CDE4436721BAB41A00BEBC41 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4436621BAB41A00BEBC41 /* PhotoSelectorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		CDE4436621BAB41A00BEBC41 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		D51F8D7E380DA4DF3FF6E58D /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 				CD46429021B9867D00EF0943 /* LoginController.swift */,
 				CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */,
 				CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */,
+				CDE4436621BAB41A00BEBC41 /* PhotoSelectorController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				CD45A24521B7243D00C47508 /* SignUpController.swift in Sources */,
 				CD8491C621B7E5E600E0B2A1 /* Extensions.swift in Sources */,
 				CD45A24321B7243D00C47508 /* AppDelegate.swift in Sources */,
+				CDE4436721BAB41A00BEBC41 /* PhotoSelectorController.swift in Sources */,
 				CD8491CE21B7FA3D00E0B2A1 /* AuthService.swift in Sources */,
 				CD8491D421B81B0300E0B2A1 /* User.swift in Sources */,
 				CD8491DA21B8414E00E0B2A1 /* UserProfileController.swift in Sources */,
