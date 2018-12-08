@@ -16,6 +16,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     var images = [UIImage]()
     var assets = [PHAsset]()
     var selectedImage: UIImage?
+    var header: PhotoSelectorHeader?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +78,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     
     @objc func handleNext() {
-        
+        let sharePhotoController = SharePhotoController()
+        sharePhotoController.selectedImage = header?.photoImageView.image
+        navigationController?.pushViewController(sharePhotoController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -108,6 +111,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
         
         header.photoImageView.image = selectedImage
+        self.header = header
         
         if let selectedImage = selectedImage {
             if let index = images.firstIndex(of: selectedImage) {
@@ -136,6 +140,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedImage = images[indexPath.item]
         self.collectionView.reloadData()
+        let indexPath = IndexPath(item: 0, section: 0)
+        self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
 
 }

@@ -25,6 +25,7 @@
 		CD8491DA21B8414E00E0B2A1 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */; };
 		CD8491DC21B8511B00E0B2A1 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */; };
 		CDD70C5321BC02F500C101CA /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD70C5221BC02F500C101CA /* PhotoSelectorHeader.swift */; };
+		CDD70C5521BC0AA600C101CA /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD70C5421BC0AA600C101CA /* SharePhotoController.swift */; };
 		CDE4436721BAB41A00BEBC41 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4436621BAB41A00BEBC41 /* PhotoSelectorController.swift */; };
 		CDE4436921BAC26100BEBC41 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4436821BAC26100BEBC41 /* PhotoSelectorCell.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		CDD70C5221BC02F500C101CA /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
+		CDD70C5421BC0AA600C101CA /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		CDE4436621BAB41A00BEBC41 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		CDE4436821BAC26100BEBC41 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		D51F8D7E380DA4DF3FF6E58D /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 				CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */,
 				CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */,
 				CDE4436621BAB41A00BEBC41 /* PhotoSelectorController.swift */,
+				CDD70C5421BC0AA600C101CA /* SharePhotoController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				CDD70C5321BC02F500C101CA /* PhotoSelectorHeader.swift in Sources */,
 				CDE4436921BAC26100BEBC41 /* PhotoSelectorCell.swift in Sources */,
 				CD8491D021B80FE200E0B2A1 /* StorageService.swift in Sources */,
+				CDD70C5521BC0AA600C101CA /* SharePhotoController.swift in Sources */,
 				CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */,
 				CD45A24521B7243D00C47508 /* SignUpController.swift in Sources */,
 				CD8491C621B7E5E600E0B2A1 /* Extensions.swift in Sources */,
