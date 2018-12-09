@@ -32,27 +32,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         fetchProfilePosts()
     }
     
-    fileprivate func fetchProfilePosts() {
-        guard let userId = AuthService.init().currentUser()?.id else { return }
-        
-        postListener = reference(.Posts).order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
-            guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-            
-            snapshot.documentChanges.forEach { change in
-                if change.type == .added {
-                    let document = change.document
-                    guard let post = Post(dictionary: document.data(), _id: document.documentID) else { return }
-                    if post.userId == userId {
-                        self.posts.insert(post, at: 0)
-                        self.collectionView.reloadData()
-                    }
-                }
-            }
-        }
-    }
     
     func setupRightBarButtonItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear"), style: .plain, target: self, action: #selector(handleLogOut))
@@ -71,6 +50,35 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(alert, animated: true)
+    }
+    
+    fileprivate func fetchProfilePosts() {
+        guard let userId = AuthService.init().currentUser()?.id else { return }
+        
+        postListener = reference(.Posts).whereField("userId", isEqualTo: userId).addSnapshotListener { (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                print("Error: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentChange(change)
+            }
+        }
+    }
+    
+    private func handleDocumentChange(_ change: DocumentChange) {
+        let document = change.document
+        guard let post = Post(dictionary: document.data(), _id: document.documentID) else { return }
+        
+        switch change.type {
+        case .added:
+            posts.insert(post, at: 0)
+            let indexPath = IndexPath(item: 0, section: 0)
+            collectionView.insertItems(at: [indexPath])
+        default:
+            break
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
