@@ -33,15 +33,15 @@ class AuthService {
                 return
             }
             
-            StorageService.instance.uploadImage(image: image, completion: { (url) in
+            StorageService.instance.uploadImage(image: image, path: kPROFILE, completion: { (url) in
                 
-                guard let imageURL = url?.absoluteString else { return }
+                guard let imageURL = url else { return }
                 
                 let dic = [
                     kID : fuser.uid,
                     kEMAIL : fuser.email!,
                     kUSERNAME : username,
-                    kIMAGEURL : imageURL
+                    kPROFILEIMAGEURL : imageURL
                 ]
                 
                 let user = User(dictionary: dic)
