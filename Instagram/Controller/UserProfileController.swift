@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -14,6 +15,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     let cellId = "cellId"
     var user: User?
     var posts = [Post]()
+    var postListener: ListenerRegistration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +29,28 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         navigationItem.title = user?.username
         setupRightBarButtonItem()
         
-        PostService.instance.fetchProfilePosts { (posts) in
-            self.posts = posts
-            self.collectionView.reloadData()
+        fetchProfilePosts()
+    }
+    
+    fileprivate func fetchProfilePosts() {
+        guard let userId = AuthService.init().currentUser()?.id else { return }
+        
+        postListener = reference(.Posts).order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                if change.type == .added {
+                    let document = change.document
+                    guard let post = Post(dictionary: document.data(), _id: document.documentID) else { return }
+                    if post.userId == userId {
+                        self.posts.insert(post, at: 0)
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
         }
     }
     
@@ -83,5 +104,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfileCell
         cell.post = posts[indexPath.item]
         return cell
+    }
+    
+    deinit {
+        postListener?.remove()
     }
 }

@@ -31,6 +31,7 @@
 		CDF49EED21BD4CF800D0F6C8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF49EEC21BD4CF800D0F6C8 /* Post.swift */; };
 		CDF49EEF21BD4EB900D0F6C8 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF49EEE21BD4EB900D0F6C8 /* PostService.swift */; };
 		CDF49EF121BD64B000D0F6C8 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF49EF021BD64B000D0F6C8 /* UserProfileCell.swift */; };
+		CDF49EF321BD754200D0F6C8 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF49EF221BD754200D0F6C8 /* CustomImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		CDF49EEC21BD4CF800D0F6C8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		CDF49EEE21BD4EB900D0F6C8 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		CDF49EF021BD64B000D0F6C8 /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
+		CDF49EF221BD754200D0F6C8 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		D51F8D7E380DA4DF3FF6E58D /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 				CDE4436821BAC26100BEBC41 /* PhotoSelectorCell.swift */,
 				CDD70C5221BC02F500C101CA /* PhotoSelectorHeader.swift */,
 				CDF49EF021BD64B000D0F6C8 /* UserProfileCell.swift */,
+				CDF49EF221BD754200D0F6C8 /* CustomImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				CDE4436921BAC26100BEBC41 /* PhotoSelectorCell.swift in Sources */,
 				CD8491D021B80FE200E0B2A1 /* StorageService.swift in Sources */,
 				CDF49EEF21BD4EB900D0F6C8 /* PostService.swift in Sources */,
+				CDF49EF321BD754200D0F6C8 /* CustomImageView.swift in Sources */,
 				CDD70C5521BC0AA600C101CA /* SharePhotoController.swift in Sources */,
 				CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */,
 				CD45A24521B7243D00C47508 /* SignUpController.swift in Sources */,

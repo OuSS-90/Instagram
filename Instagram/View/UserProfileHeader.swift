@@ -12,13 +12,13 @@ class UserProfileHeader: UICollectionViewCell {
     
     var user: User? {
         didSet{
-            setupProfileImage()
+            profileImage.loadImage(urlString: user?.profileImageURL)
             usernameLabel.text = user?.username
         }
     }
     
-    let profileImage: UIImageView = {
-        let imageView = UIImageView()
+    let profileImage: CustomImageView = {
+        let imageView = CustomImageView()
         return imageView
     }()
     
@@ -110,22 +110,6 @@ class UserProfileHeader: UICollectionViewCell {
         usernameLabel.anchor(top: profileImage.bottomAnchor, left: leadingAnchor, right: trailingAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
         
         setupBottomTabBar()
-    }
-    
-    fileprivate func setupProfileImage() {
-        guard let profileImageURL = user?.profileImageURL else { return }
-        guard let url = URL(string: profileImageURL) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil { return }
-            guard let data = data else { return }
-            
-            let image = UIImage(data: data)
-            
-            DispatchQueue.main.async {
-                self.profileImage.image = image
-            }
-        }.resume()
     }
     
     fileprivate func setupUserStatsView() {

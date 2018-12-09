@@ -12,12 +12,12 @@ class UserProfileCell: UICollectionViewCell {
     
     var post: Post? {
         didSet{
-            setupProfileImage()
+            photoImageView.loadImage(urlString: post?.imageUrl)
         }
     }
     
-    let photoImageView: UIImageView = {
-        let imageView = UIImageView()
+    let photoImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -28,15 +28,6 @@ class UserProfileCell: UICollectionViewCell {
         
         addSubview(photoImageView)
         photoImageView.anchor(top: topAnchor, left: leadingAnchor, bottom: bottomAnchor, right: trailingAnchor)
-    }
-    
-    fileprivate func setupProfileImage() {
-        guard let imageURL = post?.imageUrl else { return }
-        guard let url = URL(string: imageURL) else { return }
-        
-        StorageService.instance.downloadImage(at: url) { (image) in
-            self.photoImageView.image = image
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -46,7 +46,7 @@ class StorageService {
     }
     
     func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void) {
-        /*let reference = Storage.storage().reference(forURL: url.absoluteString)
+        let reference = Storage.storage().reference(forURL: url.absoluteString)
         let megaByte = Int64(1 * 1024 * 1024)
         
         reference.getData(maxSize: megaByte) { data, error in
@@ -56,23 +56,6 @@ class StorageService {
             }
             
             completion(UIImage(data: imageData))
-        }*/
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                completion(nil)
-                return
-            }
-            guard let data = data else {
-                completion(nil)
-                return
-            }
-            
-            let image = UIImage(data: data)
-            
-            DispatchQueue.main.async {
-                completion(image)
-            }
-        }.resume()
+        }
     }
 }
