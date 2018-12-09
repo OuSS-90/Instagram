@@ -13,18 +13,24 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     let headerId = "headerId"
     let cellId = "cellId"
     var user: User?
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.backgroundColor = .white
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(UserProfileCell.self, forCellWithReuseIdentifier: cellId)
         
         user = AuthService.instance.currentUser()
             
         navigationItem.title = user?.username
         setupRightBarButtonItem()
+        
+        PostService.instance.fetchProfilePosts { (posts) in
+            self.posts = posts
+            self.collectionView.reloadData()
+        }
     }
     
     func setupRightBarButtonItem() {
@@ -70,12 +76,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfileCell
+        cell.post = posts[indexPath.item]
         return cell
     }
 }

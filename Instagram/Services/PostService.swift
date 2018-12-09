@@ -17,4 +17,18 @@ class PostService {
         }
     }
     
+    func fetchProfilePosts(completion: @escaping (_ posts: [Post]) -> Void) {
+        var posts = [Post]()
+        guard let userId = AuthService.init().currentUser()?.id else { return }
+        reference(.Posts).whereField("userId", isEqualTo: userId).getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            for document in snapshot.documents {
+                if let post = Post(dictionary: document.data(), _id: document.documentID) {
+                    posts.append(post)
+                }
+            }
+            completion(posts)
+        }
+    }
+    
 }

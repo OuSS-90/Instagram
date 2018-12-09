@@ -72,6 +72,7 @@ class SharePhotoController: UIViewController {
                 kCAPTION : caption,
                 kIMAGEWIDTH : image.size.width,
                 kIMAGEHEIGHT : image.size.height,
+                kCREATEDAT : Date(),
                 kUSERID : userId
                 ]
             

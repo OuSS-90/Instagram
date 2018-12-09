@@ -13,8 +13,8 @@ struct Post {
     let id: String?
     let imageUrl: String
     let caption: String
-    let imageWidth: String
-    let imageHeight: String
+    let imageWidth: CGFloat
+    let imageHeight: CGFloat
     let createdAt: Date
     let userId: String
     
@@ -35,21 +35,29 @@ struct Post {
         return dic
     }
     
-    init?(dictionary: [String : Any]) {
+    init?(dictionary: [String : Any], _id: String? = nil) {
         guard let _imageUrl = dictionary[kIMAGEURL] as? String,
             let _caption = dictionary[kCAPTION] as? String,
-            let _userId = dictionary[kUSERID] as? String,
-            let _createdAt = dictionary[kCREATEDAT] as? Timestamp
+            let _imageWidth = dictionary[kIMAGEWIDTH] as? CGFloat,
+            let _imageHeight = dictionary[kIMAGEHEIGHT] as? CGFloat,
+            let _userId = dictionary[kUSERID] as? String
             else {
                 return nil
         }
         
-        id = nil
+        id = dictionary[kID] as? String ?? _id
         imageUrl = _imageUrl
         caption = _caption
-        imageWidth = dictionary[kIMAGEWIDTH] as? String ?? ""
-        imageHeight = dictionary[kIMAGEHEIGHT] as? String ?? ""
+        imageWidth = _imageWidth
+        imageHeight = _imageHeight
         userId = _userId
-        createdAt = _createdAt.dateValue()
+       
+        if let _createdAt = dictionary[kCREATEDAT] as? Timestamp {
+            createdAt = _createdAt.dateValue()
+        } else if let _createdAt = dictionary[kCREATEDAT] as? Date {
+            createdAt = _createdAt
+        } else {
+            return nil
+        }
     }
 }
