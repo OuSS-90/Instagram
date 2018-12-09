@@ -27,5 +27,6 @@ public let kIMAGEURL = "imageURL"
 public let kCAPTION = "caption"
 public let kIMAGEWIDTH = "imageWidth"
 public let kIMAGEHEIGHT = "imageHeight"
+public let kCREATEDAT = "createdAt"
 public let kUSERID = "userId"
 
