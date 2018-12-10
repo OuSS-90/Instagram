@@ -60,7 +60,7 @@ class SharePhotoController: UIViewController {
     @objc func handleShare() {
         guard let caption = textView.text, !caption.isEmpty else { return }
         guard let image = selectedImage else { return }
-        guard let userId = AuthService.instance.currentUser()?.id else { return }
+        guard let user = AuthService.instance.currentUser() else { return }
         
         navigationItem.rightBarButtonItem?.isEnabled = false
         
@@ -72,11 +72,10 @@ class SharePhotoController: UIViewController {
                 kCAPTION : caption,
                 kIMAGEWIDTH : image.size.width,
                 kIMAGEHEIGHT : image.size.height,
-                kCREATEDAT : Date(),
-                kUSERID : userId
+                kCREATEDAT : Date()
                 ]
             
-            guard let post = Post(dictionary: dictionary) else { return }
+            guard let post = Post(dictionary: dictionary, _user: user) else { return }
             
             PostService.instance.savePostToFirestore(post: post, completion: { (error) in
                 if error != nil {

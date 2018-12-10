@@ -69,7 +69,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     private func handleDocumentChange(_ change: DocumentChange) {
         let document = change.document
-        guard let post = Post(dictionary: document.data(), _id: document.documentID) else { return }
+        guard let user = user else { return }
+        guard let post = Post(dictionary: document.data(), _user: user, _id: document.documentID) else { return }
         
         switch change.type {
         case .added:

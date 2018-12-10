@@ -20,13 +20,11 @@ class PostService {
     func fetchPosts(completion: @escaping (_ posts: [Post]) -> Void) {
         var posts = [Post]()
         reference(.Posts).getDocuments { (snapshot, error) in
-            guard let snapshot = snapshot else {
-                completion(posts)
-                return
-            }
+            guard let snapshot = snapshot else { return }
             
             snapshot.documents.forEach({ (document) in
-                if let post = Post(dictionary: document.data(), _id: document.documentID) {
+                guard let user = AuthService.instance.currentUser() else { return }
+                if let post = Post(dictionary: document.data(), _user: user, _id: document.documentID) {
                     posts.append(post)
                 }
             })
