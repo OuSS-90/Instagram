@@ -25,14 +25,15 @@ class UserSearchController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        definesPresentationContext = true
         tableView.register(UserSearchCell.self, forCellReuseIdentifier: cellId)
+        
         setupNavigationBar()
         fetchUsers()
         
     }
     
     func setupNavigationBar() {
+        definesPresentationContext = true
         navigationItem.title = "Users"
         navigationItem.searchController = search
     }
