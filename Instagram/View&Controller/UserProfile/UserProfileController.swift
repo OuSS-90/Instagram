@@ -24,7 +24,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(UserProfileCell.self, forCellWithReuseIdentifier: cellId)
         
-        user = AuthService.instance.currentUser()
+        user = user ?? AuthService.instance.currentUser()
             
         navigationItem.title = user?.username
         setupRightBarButtonItem()
@@ -53,7 +53,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     fileprivate func fetchProfilePosts() {
-        guard let userId = AuthService.init().currentUser()?.id else { return }
+        guard let userId = user?.id else { return }
         
         postListener = reference(.Posts).whereField("userId", isEqualTo: userId).addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {

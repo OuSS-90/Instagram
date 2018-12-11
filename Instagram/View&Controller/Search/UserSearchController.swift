@@ -26,6 +26,8 @@ class UserSearchController: UITableViewController {
         super.viewDidLoad()
         
         tableView.register(UserSearchCell.self, forCellReuseIdentifier: cellId)
+        tableView.tableFooterView = UIView()
+        tableView.keyboardDismissMode = .onDrag
         
         setupNavigationBar()
         fetchUsers()
@@ -58,6 +60,14 @@ class UserSearchController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserSearchCell
         cell.user = filteredUsers[indexPath.row]
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = filteredUsers[indexPath.row]
+        let layout = UICollectionViewFlowLayout()
+        let userProfile = UserProfileController(collectionViewLayout: layout)
+        userProfile.user = user
+        navigationController?.pushViewController(userProfile, animated: true)
     }
 }
 
