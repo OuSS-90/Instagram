@@ -10,18 +10,23 @@ import UIKit
 
 class UserSearchCell: UITableViewCell {
     
+    var user: User? {
+        didSet{
+            profileImageView.loadImage(urlString: user?.profileImageURL)
+            userNameLabel.text = user?.username
+        }
+    }
+    
     let profileImageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .red
         return imageView
     }()
     
     let userNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.text = "Username"
         return label
     }()
     

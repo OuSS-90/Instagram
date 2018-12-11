@@ -52,7 +52,4 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
         return cell
     }
-
-    
-
 }

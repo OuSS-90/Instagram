@@ -67,7 +67,7 @@ class AuthService {
             }
             
             //get user from firebase and save locally
-            self.fetchUser(userId: fuser.uid, completion: { (user) in
+            UserService.instance.fetchUser(userId: fuser.uid, completion: { (user) in
                 self.saveUserLocally(dictionary: user.dictionary)
                 completion(true)
             })
@@ -97,14 +97,5 @@ class AuthService {
     func saveUserLocally(dictionary: [String : Any]?) {
         UserDefaults.standard.set(dictionary, forKey: kCURRENTUSER)
         UserDefaults.standard.synchronize()
-    }
-    
-    func fetchUser(userId: String, completion: @escaping (_ user: User) -> Void) {
-        reference(.Users).document(userId).getDocument { (document, error) in
-            guard let document = document, document.exists else { return }
-            guard let dictionary = document.data() else { return }
-            let user = User(dictionary: dictionary)
-            completion(user)
-        }
     }
 }

@@ -23,6 +23,13 @@ struct User {
         ]
     }
     
+    init(dictionary: [String : Any], _id: String) {
+        id = _id
+        email = dictionary[kEMAIL] as? String ?? ""
+        username = dictionary[kUSERNAME] as? String ?? ""
+        profileImageURL = dictionary[kPROFILEIMAGEURL] as? String ?? ""
+    }
+    
     init(dictionary: [String : Any]) {
         id = dictionary[kID] as! String
         email = dictionary[kEMAIL] as? String ?? ""
