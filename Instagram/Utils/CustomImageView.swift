@@ -16,6 +16,7 @@ class CustomImageView: UIImageView {
     func loadImage(urlString: String?) {
         
         lastURL = urlString
+        self.image = nil
         
         guard let str = urlString else { return }
         guard let url = URL(string: str) else { return }

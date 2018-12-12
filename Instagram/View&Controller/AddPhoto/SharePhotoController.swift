@@ -10,6 +10,8 @@ import UIKit
 
 class SharePhotoController: UIViewController {
     
+    static let refreshPosts = Notification.Name("refreshPosts")
+    
     var selectedImage: UIImage? {
         didSet{
             imageView.image = selectedImage
@@ -84,6 +86,8 @@ class SharePhotoController: UIViewController {
                 }
                 
                 self.dismiss(animated: true)
+                
+                NotificationCenter.default.post(name: SharePhotoController.refreshPosts, object: nil)
             })
         }
     }

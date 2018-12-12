@@ -15,17 +15,30 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchAllPosts), name: SharePhotoController.refreshPosts, object: nil)
 
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
         collectionView.backgroundColor = UIColor.white
         collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         setupNavigationBar()
-        
-        fetchPosts()
-        fetchFollowingPosts()
+        fetchAllPosts()
     }
     
     fileprivate func setupNavigationBar() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
+    }
+    
+    @objc func handleRefresh() {
+        posts.removeAll()
+        fetchAllPosts()
+    }
+    
+    @objc fileprivate func fetchAllPosts() {
+        fetchPosts()
+        fetchFollowingPosts()
     }
     
     fileprivate func fetchPosts() {
@@ -44,6 +57,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     fileprivate func reloadCollection(posts: [Post]) {
         self.posts += posts
         self.posts.sort{ $0.createdAt > $1.createdAt }
+        self.collectionView.refreshControl?.endRefreshing()
         self.collectionView.reloadData()
     }
     
