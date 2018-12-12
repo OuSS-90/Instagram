@@ -20,15 +20,33 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         setupNavigationBar()
         
-        PostService.instance.fetchPosts { (posts) in
-            self.posts = posts
-            self.collectionView.reloadData()
+        fetchPosts()
+        fetchFollowingPosts()
+    }
+    
+    fileprivate func setupNavigationBar() {
+        navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
+    }
+    
+    fileprivate func fetchPosts() {
+        guard let user = AuthService.instance.currentUser() else { return }
+        PostService.instance.fetchPostsWithUser(user: user) { (posts) in
+            self.reloadCollection(posts: posts)
         }
     }
     
-    func setupNavigationBar() {
-        navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
+    fileprivate func fetchFollowingPosts() {
+        PostService.instance.fetchFollowingPosts { (posts) in
+            self.reloadCollection(posts: posts)
+        }
     }
+    
+    fileprivate func reloadCollection(posts: [Post]) {
+        self.posts += posts
+        self.posts.sort{ $0.createdAt > $1.createdAt }
+        self.collectionView.reloadData()
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var height: CGFloat = 40 + 8 + 8

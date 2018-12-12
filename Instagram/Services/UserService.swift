@@ -54,7 +54,7 @@ class UserService {
     
     func checkFollower(followerId: String, completion: @escaping (_ isFollowing: Bool) -> Void) {
         guard let userId = AuthService.instance.currentUser()?.id else { return }
-        reference(.Following).document(userId).collection("Follower").document(followerId).getDocument { (document, error) in
+        reference(.Following).document("\(userId)/Follower/\(followerId)").getDocument { (document, error) in
             guard let document = document else { return }
             completion(document.exists)
         }

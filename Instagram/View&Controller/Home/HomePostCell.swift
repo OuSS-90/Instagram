@@ -14,6 +14,7 @@ class HomePostCell: UICollectionViewCell {
             profileImageView.loadImage(urlString: post?.user.profileImageURL)
             usernameLabel.text = post?.user.username
             photoImageView.loadImage(urlString: post?.imageUrl)
+            setupAttributedCaption()
         }
     }
     
@@ -110,7 +111,7 @@ class HomePostCell: UICollectionViewCell {
         bookmarkButton.anchor(top: photoImageView.bottomAnchor, right: trailingAnchor, width: 40, height: 50)
     }
     
-    fileprivate func setupCaptionLabel() {
+    fileprivate func setupAttributedCaption() {
         guard let post = post else { return }
         
         let attributedText = NSMutableAttributedString(string: post.user.username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
@@ -119,7 +120,7 @@ class HomePostCell: UICollectionViewCell {
         
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
         
-        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        attributedText.append(NSAttributedString(string: post.createdAt.timeAgoDisplay(), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
         captionLabel.attributedText = attributedText
     }
