@@ -12,6 +12,7 @@ import Firebase
 enum FCollectionRef: String {
     case Users
     case Posts
+    case Following
 }
 
 func reference(_ collectionRef: FCollectionRef) -> CollectionReference {

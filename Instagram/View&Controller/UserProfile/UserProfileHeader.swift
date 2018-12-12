@@ -14,6 +14,7 @@ class UserProfileHeader: UICollectionViewCell {
         didSet{
             profileImage.loadImage(urlString: user?.profileImageURL)
             usernameLabel.text = user?.username
+            setupEditFollowButton()
         }
     }
     
@@ -59,9 +60,9 @@ class UserProfileHeader: UICollectionViewCell {
         return label
     }()
     
-    let editProfileButton: UIButton = {
+    let editProfileFollowButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Edit Progile", for: .normal)
+        button.setTitle("Edit Profile", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.borderColor = UIColor.lightGray.cgColor
@@ -96,7 +97,7 @@ class UserProfileHeader: UICollectionViewCell {
     
     fileprivate func setupView() {
         addSubview(profileImage)
-        addSubview(editProfileButton)
+        addSubview(editProfileFollowButton)
         addSubview(usernameLabel)
         
         profileImage.anchor(top: topAnchor, left: leadingAnchor, paddingTop: 20, paddingLeft: 20, width: 80, height: 80)
@@ -105,7 +106,7 @@ class UserProfileHeader: UICollectionViewCell {
         
         setupUserStatsView()
         
-        editProfileButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leadingAnchor, right: followingLabel.trailingAnchor, paddingTop: 2, height: 34)
+        editProfileFollowButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leadingAnchor, right: followingLabel.trailingAnchor, paddingTop: 2, height: 34)
         
         usernameLabel.anchor(top: profileImage.bottomAnchor, left: leadingAnchor, right: trailingAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
         
@@ -139,6 +140,56 @@ class UserProfileHeader: UICollectionViewCell {
         stackView.anchor(left: leadingAnchor, bottom: bottomAnchor, right: trailingAnchor, height: 50)
         topDeviderView.anchor(top: stackView.topAnchor, left: stackView.leadingAnchor, right: stackView.trailingAnchor, height: 0.5)
         bottomDeviderView.anchor(top: stackView.bottomAnchor, left: stackView.leadingAnchor, right: stackView.trailingAnchor, height: 0.5)
+    }
+    
+    fileprivate func setupEditFollowButton() {
+        guard let loggedUserId = AuthService.instance.currentUser()?.id else { return }
+        guard let userId = user?.id else { return }
+        
+        if loggedUserId == userId {
+            
+        } else {
+            UserService.instance.checkFollower(followerId: userId) { (isFollowing) in
+                isFollowing ? self.setupUnfollowStyle() : self.setupFollowStyle()
+                self.editProfileFollowButton.addTarget(self, action: #selector(self.handleFollow), for: .touchUpInside)
+            }
+        }
+    }
+    
+    @objc func handleFollow() {
+        guard let userId = user?.id else { return }
+        
+        if editProfileFollowButton.titleLabel?.text == "Unfollow" {
+            UserService.instance.unFollow(followerId: userId) { (error) in
+                if error != nil {
+                    print(error?.localizedDescription ?? "")
+                    return
+                }
+                self.setupFollowStyle()
+            }
+        } else {
+            UserService.instance.follow(followerId: userId) { (error) in
+                if error != nil {
+                    print(error?.localizedDescription ?? "")
+                    return
+                }
+                self.setupUnfollowStyle()
+            }
+        }
+    }
+    
+    fileprivate func setupFollowStyle() {
+        editProfileFollowButton.setTitle("Follow", for: .normal)
+        editProfileFollowButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        editProfileFollowButton.setTitleColor(UIColor.white, for: .normal)
+        editProfileFollowButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+    }
+    
+    fileprivate func setupUnfollowStyle() {
+        editProfileFollowButton.setTitle("Unfollow", for: .normal)
+        editProfileFollowButton.backgroundColor = UIColor.white
+        editProfileFollowButton.setTitleColor(UIColor.black, for: .normal)
+        editProfileFollowButton.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {
