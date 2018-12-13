@@ -29,9 +29,7 @@ class CameraController: UIViewController {
         return button
     }()
     
-    @objc func handleCapturePhoto() {
-        print("Capturing photo...")
-    }
+    let output = AVCapturePhotoOutput()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +47,16 @@ class CameraController: UIViewController {
         dismissButton.anchor(top: view.topAnchor, right: view.trailingAnchor, paddingTop: 12, paddingRight: 12, width: 50, height: 50)
     }
     
+    @objc func handleCapturePhoto() {
+        let photoSettings = AVCapturePhotoSettings()
+    
+        if let previewFormatType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
+            photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewFormatType]
+        }
+        
+        output.capturePhoto(with: photoSettings, delegate: self)
+    }
+    
     fileprivate func setupCaptureSession() {
         let captureSession = AVCaptureSession()
         
@@ -63,7 +71,6 @@ class CameraController: UIViewController {
             print(err)
         }
         
-        let output = AVCapturePhotoOutput()
         if captureSession.canAddOutput(output){
             captureSession.addOutput(output)
         }
@@ -75,4 +82,16 @@ class CameraController: UIViewController {
         captureSession.startRunning()
     }
     
+}
+
+extension CameraController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        guard let data = photo.fileDataRepresentation(), let image =  UIImage(data: data) else { return }
+        
+        let previewImageView = UIImageView(image: image)
+        view.addSubview(previewImageView)
+        
+        previewImageView.anchor(top: view.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor)
+    }
 }
