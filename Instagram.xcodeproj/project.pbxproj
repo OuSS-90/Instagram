@@ -10,6 +10,8 @@
 		A8E1E2D614B3190813530F23 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51F8D7E380DA4DF3FF6E58D /* Pods_Instagram.framework */; };
 		CD15C99921C27D4A0060C4F6 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C99821C27D4A0060C4F6 /* CameraController.swift */; };
 		CD15C99B21C298CC0060C4F6 /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C99A21C298CC0060C4F6 /* PreviewPhotoContainerView.swift */; };
+		CD15C99D21C2A4C30060C4F6 /* CustomeAnimationForPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C99C21C2A4C30060C4F6 /* CustomeAnimationForPresent.swift */; };
+		CD15C99F21C2A7030060C4F6 /* CustomeAnimationForDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C99E21C2A7030060C4F6 /* CustomeAnimationForDismiss.swift */; };
 		CD45A24321B7243D00C47508 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45A24221B7243D00C47508 /* AppDelegate.swift */; };
 		CD45A24521B7243D00C47508 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45A24421B7243D00C47508 /* SignUpController.swift */; };
 		CD45A24821B7243D00C47508 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD45A24621B7243D00C47508 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		BDB05CCE97E528E4A627C5DB /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		CD15C99821C27D4A0060C4F6 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		CD15C99A21C298CC0060C4F6 /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
+		CD15C99C21C2A4C30060C4F6 /* CustomeAnimationForPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeAnimationForPresent.swift; sourceTree = "<group>"; };
+		CD15C99E21C2A7030060C4F6 /* CustomeAnimationForDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeAnimationForDismiss.swift; sourceTree = "<group>"; };
 		CD45A23F21B7243D00C47508 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD45A24221B7243D00C47508 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD45A24421B7243D00C47508 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 			children = (
 				CD15C99821C27D4A0060C4F6 /* CameraController.swift */,
 				CD15C99A21C298CC0060C4F6 /* PreviewPhotoContainerView.swift */,
+				CD15C99C21C2A4C30060C4F6 /* CustomeAnimationForPresent.swift */,
+				CD15C99E21C2A7030060C4F6 /* CustomeAnimationForDismiss.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				CDF49EF321BD754200D0F6C8 /* CustomImageView.swift in Sources */,
 				CDD70C5521BC0AA600C101CA /* SharePhotoController.swift in Sources */,
 				CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */,
+				CD15C99F21C2A7030060C4F6 /* CustomeAnimationForDismiss.swift in Sources */,
 				CD45A24521B7243D00C47508 /* SignUpController.swift in Sources */,
 				CD8491C621B7E5E600E0B2A1 /* Extensions.swift in Sources */,
 				CD45A24321B7243D00C47508 /* AppDelegate.swift in Sources */,
@@ -405,6 +412,7 @@
 				CD8491DA21B8414E00E0B2A1 /* UserProfileController.swift in Sources */,
 				CD15C99921C27D4A0060C4F6 /* CameraController.swift in Sources */,
 				CD8491D621B81BF800E0B2A1 /* Constants.swift in Sources */,
+				CD15C99D21C2A4C30060C4F6 /* CustomeAnimationForPresent.swift in Sources */,
 				CD15C99B21C298CC0060C4F6 /* PreviewPhotoContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
