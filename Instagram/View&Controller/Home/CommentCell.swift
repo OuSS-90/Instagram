@@ -12,8 +12,15 @@ class CommentCell: UITableViewCell {
     
     var comment: Comment? {
         didSet{
-            profileImageView.loadImage(urlString: comment?.user.profileImageURL)
-            txtLabel.text = comment?.text
+            guard let comment = comment else { return }
+            
+            profileImageView.loadImage(urlString: comment.user.profileImageURL)
+            
+            let attributedText = NSMutableAttributedString(string: comment.user.username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            
+            attributedText.append(NSAttributedString(string: " " + comment.text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+            
+            textView.attributedText = attributedText
         }
     }
     
@@ -24,23 +31,26 @@ class CommentCell: UITableViewCell {
         return imageView
     }()
     
-    let txtLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        return label
+    let textView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.isScrollEnabled = false
+        return textView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubview(profileImageView)
-        contentView.addSubview(txtLabel)
+        contentView.addSubview(textView)
         
-        profileImageView.anchor(left: contentView.leadingAnchor, paddingLeft: 8, width: 50, height: 50)
-        profileImageView.layer.cornerRadius = 50 / 2
-        profileImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        profileImageView.anchor(top: contentView.topAnchor, left: contentView.leadingAnchor, paddingTop: 8, paddingLeft: 8, width: 40, height: 40)
+        profileImageView.layer.cornerRadius = 40 / 2
         
-        txtLabel.anchor(top: contentView.topAnchor, left: profileImageView.trailingAnchor, bottom: contentView.bottomAnchor, right: contentView.trailingAnchor, paddingLeft: 8, paddingRight: 8)
+        textView.anchor(top: contentView.topAnchor, left: profileImageView.trailingAnchor, bottom: contentView.bottomAnchor, right: contentView.trailingAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4)
+        let textViewGreatOrEqual = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 48)
+        textViewGreatOrEqual.priority = .defaultHigh
+        textViewGreatOrEqual.isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

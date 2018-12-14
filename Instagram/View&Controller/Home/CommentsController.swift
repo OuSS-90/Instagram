@@ -31,11 +31,16 @@ class CommentsController: UITableViewController {
         sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         
+        let topSeparator = UIView()
+        topSeparator.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
+        
         containerView.addSubview(sendButton)
         containerView.addSubview(commentTextField)
+        containerView.addSubview(topSeparator)
         
         sendButton.anchor(top: containerView.topAnchor, bottom: containerView.bottomAnchor, right: containerView.trailingAnchor, paddingRight: 12, width: 50)
         commentTextField.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: containerView.bottomAnchor, right: sendButton.leadingAnchor, paddingLeft: 12)
+        topSeparator.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, right: containerView.trailingAnchor, height: 0.5)
         
         return containerView
     }()
@@ -68,7 +73,11 @@ class CommentsController: UITableViewController {
         navigationItem.title = "Comments"
         
         tableView.register(CommentCell.self, forCellReuseIdentifier: cellId)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
         tableView.tableFooterView = UIView()
+        
+        fetchComments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,16 +112,20 @@ class CommentsController: UITableViewController {
     }
     
     func handleDocumentChange(change: DocumentChange) {
-        guard let user = AuthService.instance.currentUser() else { return }
-        guard let comment = Comment(dictionary: change.document.data(), _user: user) else { return }
+        let dictionary = change.document.data()
+        guard let userId = dictionary[kUSERID] as? String else { return }
         
-        switch change.type {
-        case .added:
-            comments.append(comment)
-            let indexPath = IndexPath(row: comments.count, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
-        default:
-            break
+        UserService.instance.fetchUser(userId: userId) { (user) in
+            guard let comment = Comment(dictionary: dictionary, _user: user) else { return }
+            
+            switch change.type {
+            case .added:
+                self.comments.append(comment)
+                let indexPath = IndexPath(row: self.comments.count - 1, section: 0)
+                self.tableView.insertRows(at: [indexPath], with: .none)
+            default:
+                break
+            }
         }
     }
     
