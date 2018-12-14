@@ -88,8 +88,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
         if indexPath.item < posts.count {
             cell.post = posts[indexPath.item]
+            cell.delegate = self
         }
     
         return cell
+    }
+}
+
+extension HomeController: HomePostCellDelegate{
+    func didTapComment(post: Post) {
+        let commentsController = CommentsController()
+        navigationController?.pushViewController(commentsController, animated: true)
     }
 }

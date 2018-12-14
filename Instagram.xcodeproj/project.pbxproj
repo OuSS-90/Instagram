@@ -28,6 +28,7 @@
 		CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */; };
 		CD8491DA21B8414E00E0B2A1 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */; };
 		CD8491DC21B8511B00E0B2A1 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */; };
+		CD9E895F21C3CD1E0089BF24 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */; };
 		CDA0F45F21BE88F9007CA77C /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0F45E21BE88F9007CA77C /* HomeController.swift */; };
 		CDA0F46121BE895C007CA77C /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0F46021BE895C007CA77C /* HomePostCell.swift */; };
 		CDAD36E921BFF2780035B317 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD36E821BFF2780035B317 /* UserSearchController.swift */; };
@@ -68,6 +69,7 @@
 		CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		CDA0F45E21BE88F9007CA77C /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		CDA0F46021BE895C007CA77C /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		CDAD36E821BFF2780035B317 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				CDA0F46021BE895C007CA77C /* HomePostCell.swift */,
 				CDA0F45E21BE88F9007CA77C /* HomeController.swift */,
+				CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				CDD70C5521BC0AA600C101CA /* SharePhotoController.swift in Sources */,
 				CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */,
 				CD15C99F21C2A7030060C4F6 /* CustomeAnimationForDismiss.swift in Sources */,
+				CD9E895F21C3CD1E0089BF24 /* CommentsController.swift in Sources */,
 				CD45A24521B7243D00C47508 /* SignUpController.swift in Sources */,
 				CD8491C621B7E5E600E0B2A1 /* Extensions.swift in Sources */,
 				CD45A24321B7243D00C47508 /* AppDelegate.swift in Sources */,
