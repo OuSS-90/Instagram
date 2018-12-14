@@ -31,6 +31,7 @@
 		CD9E895F21C3CD1E0089BF24 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */; };
 		CD9E896121C3F82F0089BF24 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E896021C3F82F0089BF24 /* Comment.swift */; };
 		CD9E896321C3FB790089BF24 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E896221C3FB790089BF24 /* CommentService.swift */; };
+		CD9E896521C40B320089BF24 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E896421C40B320089BF24 /* CommentCell.swift */; };
 		CDA0F45F21BE88F9007CA77C /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0F45E21BE88F9007CA77C /* HomeController.swift */; };
 		CDA0F46121BE895C007CA77C /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0F46021BE895C007CA77C /* HomePostCell.swift */; };
 		CDAD36E921BFF2780035B317 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD36E821BFF2780035B317 /* UserSearchController.swift */; };
@@ -74,6 +75,7 @@
 		CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		CD9E896021C3F82F0089BF24 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		CD9E896221C3FB790089BF24 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		CD9E896421C40B320089BF24 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		CDA0F45E21BE88F9007CA77C /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		CDA0F46021BE895C007CA77C /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		CDAD36E821BFF2780035B317 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				CDA0F46021BE895C007CA77C /* HomePostCell.swift */,
 				CDA0F45E21BE88F9007CA77C /* HomeController.swift */,
 				CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */,
+				CD9E896421C40B320089BF24 /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				CDF49EEF21BD4EB900D0F6C8 /* PostService.swift in Sources */,
 				CDA0F46121BE895C007CA77C /* HomePostCell.swift in Sources */,
 				CDF49EF321BD754200D0F6C8 /* CustomImageView.swift in Sources */,
+				CD9E896521C40B320089BF24 /* CommentCell.swift in Sources */,
 				CDD70C5521BC0AA600C101CA /* SharePhotoController.swift in Sources */,
 				CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */,
 				CD15C99F21C2A7030060C4F6 /* CustomeAnimationForDismiss.swift in Sources */,

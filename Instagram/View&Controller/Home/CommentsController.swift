@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentsController: UITableViewController {
     
@@ -58,11 +59,16 @@ class CommentsController: UITableViewController {
         }
     }
     
+    let cellId = "CellId"
+    var comments = [Comment]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //tableView.backgroundColor = .red
         navigationItem.title = "Comments"
+        
+        tableView.register(CommentCell.self, forCellReuseIdentifier: cellId)
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,4 +90,40 @@ class CommentsController: UITableViewController {
     override var canBecomeFirstResponder: Bool {
         return true
     }
+    
+    func fetchComments() {
+        guard let postId = post?.id else { return }
+        reference(.Comments).whereField(kPOSTID, isEqualTo: postId).addSnapshotListener { (querySnapshot, erro) in
+            guard let snapshot = querySnapshot else { return }
+            
+            snapshot.documentChanges.forEach({ (change) in
+                self.handleDocumentChange(change: change)
+            })
+        }
+    }
+    
+    func handleDocumentChange(change: DocumentChange) {
+        guard let user = AuthService.instance.currentUser() else { return }
+        guard let comment = Comment(dictionary: change.document.data(), _user: user) else { return }
+        
+        switch change.type {
+        case .added:
+            comments.append(comment)
+            let indexPath = IndexPath(row: comments.count, section: 0)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        default:
+            break
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommentCell
+        cell.comment = comments[indexPath.row]
+        return cell
+    }
+    
 }
