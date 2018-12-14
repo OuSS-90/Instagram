@@ -30,3 +30,6 @@ public let kIMAGEHEIGHT = "imageHeight"
 public let kCREATEDAT = "createdAt"
 public let kUSERID = "userId"
 
+//Comment
+public let kTEXT = "text"
+public let kPOSTID = "postId"

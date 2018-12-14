@@ -29,6 +29,8 @@
 		CD8491DA21B8414E00E0B2A1 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */; };
 		CD8491DC21B8511B00E0B2A1 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */; };
 		CD9E895F21C3CD1E0089BF24 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */; };
+		CD9E896121C3F82F0089BF24 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E896021C3F82F0089BF24 /* Comment.swift */; };
+		CD9E896321C3FB790089BF24 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E896221C3FB790089BF24 /* CommentService.swift */; };
 		CDA0F45F21BE88F9007CA77C /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0F45E21BE88F9007CA77C /* HomeController.swift */; };
 		CDA0F46121BE895C007CA77C /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0F46021BE895C007CA77C /* HomePostCell.swift */; };
 		CDAD36E921BFF2780035B317 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD36E821BFF2780035B317 /* UserSearchController.swift */; };
@@ -70,6 +72,8 @@
 		CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		CD9E896021C3F82F0089BF24 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		CD9E896221C3FB790089BF24 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		CDA0F45E21BE88F9007CA77C /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		CDA0F46021BE895C007CA77C /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		CDAD36E821BFF2780035B317 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			children = (
 				CD8491D321B81B0300E0B2A1 /* User.swift */,
 				CDF49EEC21BD4CF800D0F6C8 /* Post.swift */,
+				CD9E896021C3F82F0089BF24 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				CD8491CF21B80FE200E0B2A1 /* StorageService.swift */,
 				CDAD36EC21C001B90035B317 /* UserService.swift */,
 				CDF49EEE21BD4EB900D0F6C8 /* PostService.swift */,
+				CD9E896221C3FB790089BF24 /* CommentService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -407,12 +413,14 @@
 				CD15C99F21C2A7030060C4F6 /* CustomeAnimationForDismiss.swift in Sources */,
 				CD9E895F21C3CD1E0089BF24 /* CommentsController.swift in Sources */,
 				CD45A24521B7243D00C47508 /* SignUpController.swift in Sources */,
+				CD9E896321C3FB790089BF24 /* CommentService.swift in Sources */,
 				CD8491C621B7E5E600E0B2A1 /* Extensions.swift in Sources */,
 				CD45A24321B7243D00C47508 /* AppDelegate.swift in Sources */,
 				CDE4436721BAB41A00BEBC41 /* PhotoSelectorController.swift in Sources */,
 				CDAD36E921BFF2780035B317 /* UserSearchController.swift in Sources */,
 				CD8491CE21B7FA3D00E0B2A1 /* AuthService.swift in Sources */,
 				CD8491D421B81B0300E0B2A1 /* User.swift in Sources */,
+				CD9E896121C3F82F0089BF24 /* Comment.swift in Sources */,
 				CD8491DA21B8414E00E0B2A1 /* UserProfileController.swift in Sources */,
 				CD15C99921C27D4A0060C4F6 /* CameraController.swift in Sources */,
 				CD8491D621B81BF800E0B2A1 /* Constants.swift in Sources */,

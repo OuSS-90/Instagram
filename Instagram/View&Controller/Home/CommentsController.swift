@@ -10,7 +10,16 @@ import UIKit
 
 class CommentsController: UITableViewController {
     
-    let containerView: UIView = {
+    var post: Post?
+    
+    let commentTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter commment"
+        textField.textColor = UIColor.black
+        return textField
+    }()
+    
+    lazy var containerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor = .white
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
@@ -21,21 +30,32 @@ class CommentsController: UITableViewController {
         sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         
-        let textField = UITextField()
-        textField.placeholder = "Enter commment"
-        textField.textColor = UIColor.black
-        
         containerView.addSubview(sendButton)
-        containerView.addSubview(textField)
+        containerView.addSubview(commentTextField)
         
         sendButton.anchor(top: containerView.topAnchor, bottom: containerView.bottomAnchor, right: containerView.trailingAnchor, paddingRight: 12, width: 50)
-        textField.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: containerView.bottomAnchor, right: sendButton.leadingAnchor, paddingLeft: 12)
+        commentTextField.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: containerView.bottomAnchor, right: sendButton.leadingAnchor, paddingLeft: 12)
         
         return containerView
     }()
     
     @objc func handleSend(){
+        guard let user = AuthService.instance.currentUser() else { return }
+        guard let postId = post?.id else { return }
+        guard let text = commentTextField.text, text.count > 0 else { return }
         
+        let dictionary: [String : Any] = [
+            kTEXT : text,
+            kPOSTID : postId,
+            kCREATEDAT : Date()
+        ]
+        
+        guard let comment = Comment(dictionary: dictionary, _user: user) else { return }
+        CommentService.instance.saveCommentToFirestore(comment: comment) { (error) in
+            if error != nil {
+                return
+            }
+        }
     }
     
     override func viewDidLoad() {

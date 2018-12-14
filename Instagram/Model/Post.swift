@@ -40,16 +40,9 @@ struct Post {
             let _caption = dictionary[kCAPTION] as? String,
             let _imageWidth = dictionary[kIMAGEWIDTH] as? CGFloat,
             let _imageHeight = dictionary[kIMAGEHEIGHT] as? CGFloat
-            else {
-                return nil
+        else {
+            return nil
         }
-        
-        id = dictionary[kID] as? String ?? _id
-        imageUrl = _imageUrl
-        caption = _caption
-        imageWidth = _imageWidth
-        imageHeight = _imageHeight
-        user = _user
         
         if let _createdAt = dictionary[kCREATEDAT] as? Timestamp {
             createdAt = _createdAt.dateValue()
@@ -58,5 +51,12 @@ struct Post {
         } else {
             return nil
         }
+        
+        id = dictionary[kID] as? String ?? _id
+        imageUrl = _imageUrl
+        caption = _caption
+        imageWidth = _imageWidth
+        imageHeight = _imageHeight
+        user = _user
     }
 }
