@@ -80,7 +80,7 @@ class HomePostCell: UICollectionViewCell {
     
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "ribbon").withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
@@ -113,7 +113,7 @@ class HomePostCell: UICollectionViewCell {
         usernameLabel.anchor(top: profileImageView.topAnchor, left: profileImageView.trailingAnchor, bottom: profileImageView.bottomAnchor, right: optionsButton.leadingAnchor, paddingLeft: 8, paddingRight: 8)
         optionsButton.anchor(top: usernameLabel.topAnchor, bottom: usernameLabel.bottomAnchor, right: trailingAnchor, width: 44)
         photoImageView.anchor(top: profileImageView.bottomAnchor, left: leadingAnchor, right: trailingAnchor, paddingTop: 8)
-        photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1)
+        photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         
         setupActionButtons()
         
