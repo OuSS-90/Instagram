@@ -14,6 +14,7 @@ enum FCollectionRef: String {
     case Posts
     case Following
     case Comments
+    case Likes
 }
 
 func reference(_ collectionRef: FCollectionRef) -> CollectionReference {

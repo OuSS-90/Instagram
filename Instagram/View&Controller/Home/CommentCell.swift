@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CommentCell: UITableViewCell {
     
@@ -14,7 +15,7 @@ class CommentCell: UITableViewCell {
         didSet{
             guard let comment = comment else { return }
             
-            profileImageView.loadImage(urlString: comment.user.profileImageURL)
+            profileImageView.sd_setImage(with: URL(string: comment.user.profileImageURL))
             
             let attributedText = NSMutableAttributedString(string: comment.user.username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
             
@@ -24,8 +25,8 @@ class CommentCell: UITableViewCell {
         }
     }
     
-    let profileImageView: CustomImageView = {
-        let imageView = CustomImageView()
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView

@@ -12,13 +12,14 @@ class UserSearchCell: UITableViewCell {
     
     var user: User? {
         didSet{
-            profileImageView.loadImage(urlString: user?.profileImageURL)
-            userNameLabel.text = user?.username
+            guard let user = user else { return }
+            profileImageView.sd_setImage(with: URL(string: user.profileImageURL))
+            userNameLabel.text = user.username
         }
     }
     
-    let profileImageView: CustomImageView = {
-        let imageView = CustomImageView()
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView

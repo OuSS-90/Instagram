@@ -12,12 +12,13 @@ class UserProfileCell: UICollectionViewCell {
     
     var post: Post? {
         didSet{
-            photoImageView.loadImage(urlString: post?.imageUrl)
+            guard let post = post else { return }
+            photoImageView.sd_setImage(with: URL(string: post.imageUrl))
         }
     }
     
-    let photoImageView: CustomImageView = {
-        let imageView = CustomImageView()
+    let photoImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView

@@ -17,15 +17,21 @@ class PostService {
         }
     }
     
-    func fetchPostsWithUser(user: User, completion: @escaping (_ posts: [Post]) -> Void) {
+    func fetchPostsWithUser(user: User, completion: @escaping (_ post: Post) -> Void) {
         reference(.Posts).whereField("userId", isEqualTo: user.id).getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
-            let posts = snapshot.documents.compactMap{ Post(dictionary: $0.data(), _user: user, _id: $0.documentID) }
-            completion(posts)
+            snapshot.documents.forEach({ (document) in
+                guard var post = Post(dictionary: document.data(), _user: user, _id: document.documentID) else { return }
+                guard let postId = post.id else { return }
+                self.checkLike(postId: postId, completion: { (isLiked) in
+                    post.isLiked = isLiked
+                    completion(post)
+                })
+            })
         }
     }
     
-    func fetchFollowingPosts(completion: @escaping (_ posts: [Post]) -> Void) {
+    func fetchFollowingPosts(completion: @escaping (_ post: Post) -> Void) {
         guard let userId = AuthService.instance.currentUser()?.id else { return }
         
         reference(.Following).document(userId).collection("Follower").getDocuments { (snapshot, error) in
@@ -33,11 +39,35 @@ class PostService {
             
             snapshot.documents.forEach({ (document) in
                 UserService.instance.fetchUser(userId: document.documentID, completion: { (user) in
-                    self.fetchPostsWithUser(user: user, completion: { (posts) in
-                        completion(posts)
+                    self.fetchPostsWithUser(user: user, completion: { (post) in
+                        completion(post)
                     })
                 })
             })
+        }
+    }
+    
+    func like(postId: String, hasLike: Bool, completion: @escaping (_ error: Error?) -> Void) {
+        guard let userId = AuthService.instance.currentUser()?.id else { return }
+        reference(.Likes).document("\(postId)/Users/\(userId)").setData(["exist" : hasLike]) { (error) in
+            completion(error)
+        }
+    }
+    
+    func checkLike(postId: String, completion: @escaping (_ isLiked: Bool) -> Void) {
+        guard let userId = AuthService.instance.currentUser()?.id else { return }
+        reference(.Likes).document("\(postId)/Users/\(userId)").getDocument { (document, error) in
+            if error != nil {
+                return
+            }
+            
+            let data = document?.data()
+            guard let exist = data?["exist"] as? Bool else {
+                completion(false)
+                return
+            }
+            
+            completion(exist)
         }
     }
 }

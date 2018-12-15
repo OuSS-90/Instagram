@@ -12,7 +12,7 @@ class SignUpController: UIViewController {
     
     let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "plus_photo")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "plus_photo"), for: .normal)
         button.addTarget(self, action: #selector(handleAddPhoto), for: .touchUpInside)
         return button
     }()
@@ -147,9 +147,9 @@ extension SignUpController: UIImagePickerControllerDelegate, UINavigationControl
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            addPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+            addPhotoButton.setImage(editedImage, for: .normal)
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            addPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+            addPhotoButton.setImage(originalImage, for: .normal)
         }
         
         addPhotoButton.layer.cornerRadius = addPhotoButton.frame.width / 2

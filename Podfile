@@ -11,5 +11,6 @@ target 'Instagram' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'SDWebImage'
 
 end

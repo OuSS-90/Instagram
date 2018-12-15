@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomePostCellDelegate {
     func didTapComment(post: Post)
+    func didLike(for cell: HomePostCell)
 }
 
 class HomePostCell: UICollectionViewCell {
@@ -18,15 +19,18 @@ class HomePostCell: UICollectionViewCell {
     
     var post: Post? {
         didSet{
-            profileImageView.loadImage(urlString: post?.user.profileImageURL)
-            usernameLabel.text = post?.user.username
-            photoImageView.loadImage(urlString: post?.imageUrl)
+            guard let post = post else { return }
+            profileImageView.sd_setImage(with: URL(string: post.user.profileImageURL))
+            usernameLabel.text = post.user.username
+            photoImageView.sd_setImage(with: URL(string: post.imageUrl))
             setupAttributedCaption()
+            let likeImg = post.isLiked == true ? #imageLiteral(resourceName: "like_selected") : #imageLiteral(resourceName: "like_unselected")
+            likeButton.setImage(likeImg, for: .normal)
         }
     }
     
-    let profileImageView: CustomImageView = {
-        let imageView = CustomImageView()
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .red
         imageView.clipsToBounds = true
@@ -47,35 +51,36 @@ class HomePostCell: UICollectionViewCell {
         return button
     }()
     
-    let photoImageView: CustomImageView = {
-        let imageView = CustomImageView()
+    let photoImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
+        button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return button
     }()
     
     lazy var commentButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "comment"), for: .normal)
         button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
     
     let sendMessageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "send2").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "send2"), for: .normal)
         return button
     }()
     
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "ribbon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
         return button
     }()
     
@@ -84,6 +89,10 @@ class HomePostCell: UICollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+    @objc func handleLike(){
+        delegate?.didLike(for: self)
+    }
     
     @objc func handleComment(){
         guard let post = post else { return }

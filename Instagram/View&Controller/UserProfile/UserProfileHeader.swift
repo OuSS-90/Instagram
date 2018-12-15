@@ -12,14 +12,15 @@ class UserProfileHeader: UICollectionViewCell {
     
     var user: User? {
         didSet{
-            profileImage.loadImage(urlString: user?.profileImageURL)
-            usernameLabel.text = user?.username
+            guard let user = user else { return }
+            profileImageView.sd_setImage(with: URL(string: user.profileImageURL))
+            usernameLabel.text = user.username
             setupEditFollowButton()
         }
     }
     
-    let profileImage: CustomImageView = {
-        let imageView = CustomImageView()
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
         return imageView
     }()
     
@@ -96,19 +97,19 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     fileprivate func setupView() {
-        addSubview(profileImage)
+        addSubview(profileImageView)
         addSubview(editProfileFollowButton)
         addSubview(usernameLabel)
         
-        profileImage.anchor(top: topAnchor, left: leadingAnchor, paddingTop: 20, paddingLeft: 20, width: 80, height: 80)
-        profileImage.layer.cornerRadius = 40
-        profileImage.layer.masksToBounds = true
+        profileImageView.anchor(top: topAnchor, left: leadingAnchor, paddingTop: 20, paddingLeft: 20, width: 80, height: 80)
+        profileImageView.layer.cornerRadius = 40
+        profileImageView.layer.masksToBounds = true
         
         setupUserStatsView()
         
         editProfileFollowButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leadingAnchor, right: followingLabel.trailingAnchor, paddingTop: 2, height: 34)
         
-        usernameLabel.anchor(top: profileImage.bottomAnchor, left: leadingAnchor, right: trailingAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leadingAnchor, right: trailingAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
         
         setupBottomTabBar()
     }
@@ -119,7 +120,7 @@ class UserProfileHeader: UICollectionViewCell {
         stackView.distribution = .fillEqually
         
         addSubview(stackView)
-        stackView.anchor(top: topAnchor, left: profileImage.trailingAnchor, right: trailingAnchor, paddingTop: 20, paddingLeft: 14, paddingRight: 20, height: 50)
+        stackView.anchor(top: topAnchor, left: profileImageView.trailingAnchor, right: trailingAnchor, paddingTop: 20, paddingLeft: 14, paddingRight: 20, height: 50)
     }
     
     fileprivate func setupBottomTabBar() {

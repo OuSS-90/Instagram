@@ -1,5 +1,5 @@
 //
-//  CustomImageView.swift
+//  UIImageView.swift
 //  Instagram
 //
 //  Created by OuSS on 12/9/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomImageView: UIImageView {
+/*class UIImageView: UIImageView {
     
     private var lastURL: String?
     private var imagesCache = [String : UIImage]()
@@ -42,4 +42,4 @@ class CustomImageView: UIImageView {
         }.resume()
     }
 
-}
+}*/

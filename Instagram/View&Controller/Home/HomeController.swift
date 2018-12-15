@@ -29,7 +29,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     fileprivate func setupNavigationBar() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3"), style: .plain, target: self, action: #selector(handleCamera))
     }
     
     @objc func handleCamera() {
@@ -49,19 +49,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     fileprivate func fetchPosts() {
         guard let user = AuthService.instance.currentUser() else { return }
-        PostService.instance.fetchPostsWithUser(user: user) { (posts) in
-            self.reloadCollection(posts: posts)
+        PostService.instance.fetchPostsWithUser(user: user) { (post) in
+            self.reloadCollection(post: post)
         }
     }
     
     fileprivate func fetchFollowingPosts() {
-        PostService.instance.fetchFollowingPosts { (posts) in
-            self.reloadCollection(posts: posts)
+        PostService.instance.fetchFollowingPosts { (post) in
+            self.reloadCollection(post: post)
         }
     }
     
-    fileprivate func reloadCollection(posts: [Post]) {
-        self.posts += posts
+    fileprivate func reloadCollection(post: Post) {
+        self.posts.append(post)
         self.posts.sort{ $0.createdAt > $1.createdAt }
         self.collectionView.refreshControl?.endRefreshing()
         self.collectionView.reloadData()
@@ -96,6 +96,23 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 }
 
 extension HomeController: HomePostCellDelegate{
+    func didLike(for cell: HomePostCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        var post = posts[indexPath.item]
+        guard let postId = post.id else { return }
+        let hasLike = !post.isLiked
+        
+        PostService.instance.like(postId: postId, hasLike: hasLike) { (error) in
+            if error != nil {
+                return
+            }
+            
+            post.isLiked = hasLike
+            self.posts[indexPath.item] = post
+            self.collectionView.reloadItems(at: [indexPath])
+        }
+    }
+    
     func didTapComment(post: Post) {
         let commentsController = CommentsController()
         commentsController.post = post

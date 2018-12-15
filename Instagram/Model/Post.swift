@@ -17,6 +17,7 @@ struct Post {
     let imageHeight: CGFloat
     let createdAt: Date
     let user: User
+    var isLiked = false
     
     var dictionary: [String : Any] {
         var dic: [String: Any] = [
