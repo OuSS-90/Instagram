@@ -16,7 +16,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(fetchAllPosts), name: SharePhotoController.refreshPosts, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh), name: SharePhotoController.refreshPosts, object: nil)
 
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
