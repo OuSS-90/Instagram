@@ -19,8 +19,7 @@ class PostService {
     }
     
     func fetchPostsWithUser(user: User, completion: @escaping (_ post: Post) -> Void) {
-        guard let userId = AuthService.instance.currentUser()?.id else { return }
-        reference(.Posts).document(userId).collection("userPosts").getDocuments { (snapshot, error) in
+        reference(.Posts).document(user.id).collection("userPosts").getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
             snapshot.documents.forEach({ (document) in
                 guard var post = Post(dictionary: document.data(), _user: user, _id: document.documentID) else { return }

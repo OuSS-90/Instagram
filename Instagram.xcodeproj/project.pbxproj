@@ -19,7 +19,6 @@
 		CD45A24D21B7243E00C47508 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD45A24B21B7243E00C47508 /* LaunchScreen.storyboard */; };
 		CD46429121B9867D00EF0943 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46429021B9867D00EF0943 /* LoginController.swift */; };
 		CD8491C621B7E5E600E0B2A1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491C521B7E5E600E0B2A1 /* Extensions.swift */; };
-		CD8491C821B7EC8500E0B2A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD8491C721B7EC8500E0B2A1 /* GoogleService-Info.plist */; };
 		CD8491CE21B7FA3D00E0B2A1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491CD21B7FA3D00E0B2A1 /* AuthService.swift */; };
 		CD8491D021B80FE200E0B2A1 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491CF21B80FE200E0B2A1 /* StorageService.swift */; };
 		CD8491D221B8195500E0B2A1 /* FCollectionRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D121B8195500E0B2A1 /* FCollectionRef.swift */; };
@@ -28,6 +27,7 @@
 		CD8491D821B840FD00E0B2A1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */; };
 		CD8491DA21B8414E00E0B2A1 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */; };
 		CD8491DC21B8511B00E0B2A1 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */; };
+		CD87B0A521C7E4AA008C3416 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD87B0A421C7E4AA008C3416 /* GoogleService-Info.plist */; };
 		CD9E895F21C3CD1E0089BF24 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */; };
 		CD9E896121C3F82F0089BF24 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E896021C3F82F0089BF24 /* Comment.swift */; };
 		CD9E896321C3FB790089BF24 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9E896221C3FB790089BF24 /* CommentService.swift */; };
@@ -63,7 +63,6 @@
 		CD45A24E21B7243E00C47508 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD46429021B9867D00EF0943 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		CD8491C521B7E5E600E0B2A1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		CD8491C721B7EC8500E0B2A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD8491CD21B7FA3D00E0B2A1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CD8491CF21B80FE200E0B2A1 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		CD8491D121B8195500E0B2A1 /* FCollectionRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionRef.swift; sourceTree = "<group>"; };
@@ -72,6 +71,8 @@
 		CD8491D721B840FD00E0B2A1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CD8491D921B8414E00E0B2A1 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		CD8491DB21B8511B00E0B2A1 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		CD87B0A321C7E3E2008C3416 /* Instagram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Instagram.entitlements; sourceTree = "<group>"; };
+		CD87B0A421C7E4AA008C3416 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD9E895E21C3CD1E0089BF24 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		CD9E896021C3F82F0089BF24 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		CD9E896221C3FB790089BF24 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 		CD45A24121B7243D00C47508 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				CD87B0A321C7E3E2008C3416 /* Instagram.entitlements */,
 				CD8491C421B7E5D200E0B2A1 /* Utils */,
 				CD8491CC21B7FA2200E0B2A1 /* Services */,
 				CD8491CB21B7F9D600E0B2A1 /* Model */,
@@ -163,7 +165,7 @@
 				CD45A24921B7243E00C47508 /* Assets.xcassets */,
 				CD45A24B21B7243E00C47508 /* LaunchScreen.storyboard */,
 				CD45A24E21B7243E00C47508 /* Info.plist */,
-				CD8491C721B7EC8500E0B2A1 /* GoogleService-Info.plist */,
+				CD87B0A421C7E4AA008C3416 /* GoogleService-Info.plist */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -299,6 +301,11 @@
 				TargetAttributes = {
 					CD45A23E21B7243D00C47508 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -326,7 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD45A24D21B7243E00C47508 /* LaunchScreen.storyboard in Resources */,
-				CD8491C821B7EC8500E0B2A1 /* GoogleService-Info.plist in Resources */,
+				CD87B0A521C7E4AA008C3416 /* GoogleService-Info.plist in Resources */,
 				CD45A24A21B7243E00C47508 /* Assets.xcassets in Resources */,
 				CD45A24821B7243D00C47508 /* Main.storyboard in Resources */,
 			);
@@ -591,11 +598,15 @@
 			baseConfigurationReference = 0ACE608B34CFD3EDB0216512 /* Pods-Instagram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Instagram/Instagram.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 73E6STCPDG;
+				DEVELOPMENT_TEAM = GL8H624Y4T;
 				INFOPLIST_FILE = Instagram/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ouss.Instagram;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ouss.Insta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -607,11 +618,15 @@
 			baseConfigurationReference = BDB05CCE97E528E4A627C5DB /* Pods-Instagram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Instagram/Instagram.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 73E6STCPDG;
+				DEVELOPMENT_TEAM = GL8H624Y4T;
 				INFOPLIST_FILE = Instagram/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ouss.Instagram;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ouss.Insta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
