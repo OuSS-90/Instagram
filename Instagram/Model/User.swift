@@ -13,13 +13,15 @@ struct User {
     let email: String
     let username: String
     let profileImageURL: String
+    let token: String
     
     var dictionary: [String : Any] {
         return [
             kID : id,
             kEMAIL : email,
             kUSERNAME : username,
-            kPROFILEIMAGEURL : profileImageURL
+            kPROFILEIMAGEURL : profileImageURL,
+            kTOKEN : token
         ]
     }
     
@@ -28,6 +30,7 @@ struct User {
         email = dictionary[kEMAIL] as? String ?? ""
         username = dictionary[kUSERNAME] as? String ?? ""
         profileImageURL = dictionary[kPROFILEIMAGEURL] as? String ?? ""
+        token = dictionary[kTOKEN] as? String ?? ""
     }
     
     init(dictionary: [String : Any]) {
@@ -35,5 +38,6 @@ struct User {
         email = dictionary[kEMAIL] as? String ?? ""
         username = dictionary[kUSERNAME] as? String ?? ""
         profileImageURL = dictionary[kPROFILEIMAGEURL] as? String ?? ""
+        token = dictionary[kTOKEN] as? String ?? ""
     }
 }

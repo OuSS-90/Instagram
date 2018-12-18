@@ -33,6 +33,11 @@ class AuthService {
                 return
             }
             
+            guard let fcmToken = Messaging.messaging().fcmToken else {
+                completion(false)
+                return
+            }
+            
             StorageService.instance.uploadImage(image: image, path: kPROFILE, completion: { (url) in
                 
                 guard let imageURL = url else { return }
@@ -41,7 +46,8 @@ class AuthService {
                     kID : fuser.uid,
                     kEMAIL : fuser.email!,
                     kUSERNAME : username,
-                    kPROFILEIMAGEURL : imageURL
+                    kPROFILEIMAGEURL : imageURL,
+                    kTOKEN : fcmToken
                 ]
                 
                 let user = User(dictionary: dic)

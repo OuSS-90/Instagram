@@ -14,6 +14,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     let headerId = "headerId"
     let cellId = "cellId"
     let homePostCellId = "homePostCellId"
+    var userId: String?
     var user: User?
     var posts = [Post]()
     var postListener: ListenerRegistration?
@@ -30,15 +31,16 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView.register(UserProfileCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: homePostCellId)
         
-        user = user ?? AuthService.instance.currentUser()
-            
         navigationItem.title = user?.username
         setupRightBarButtonItem()
         
-        fetchFirstPosts()
-        //fetchProfilePosts()
+        if let userId = userId {
+            fetchUser(userId: userId)
+        } else {
+            user = user ?? AuthService.instance.currentUser()
+            fetchFirstPosts()
+        }
     }
-    
     
     func setupRightBarButtonItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear"), style: .plain, target: self, action: #selector(handleLogOut))
@@ -57,6 +59,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(alert, animated: true)
+    }
+    
+    fileprivate func fetchUser(userId: String) {
+        UserService.instance.fetchUser(userId: userId) { (user) in
+            self.user = user
+            self.fetchFirstPosts()
+        }
     }
     
     fileprivate func fetchProfilePosts() {
