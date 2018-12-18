@@ -11,59 +11,14 @@ import Firebase
 
 class CommentsController: UITableViewController {
     
+    lazy var containerView: CommentInputAccessoryView = {
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let commentInputAccessoryView = CommentInputAccessoryView(frame: frame)
+        commentInputAccessoryView.delegate = self
+        return commentInputAccessoryView
+    }()
+    
     var post: Post?
-    
-    let commentTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter commment"
-        textField.textColor = UIColor.black
-        return textField
-    }()
-    
-    lazy var containerView: UIView = {
-        let containerView = UIView()
-        containerView.backgroundColor = .white
-        containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
-        
-        let sendButton = UIButton(type: .system)
-        sendButton.setTitle("Send", for: .normal)
-        sendButton.setTitleColor(UIColor.black, for: .normal)
-        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
-        
-        let topSeparator = UIView()
-        topSeparator.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
-        
-        containerView.addSubview(sendButton)
-        containerView.addSubview(commentTextField)
-        containerView.addSubview(topSeparator)
-        
-        sendButton.anchor(top: containerView.topAnchor, bottom: containerView.bottomAnchor, right: containerView.trailingAnchor, paddingRight: 12, width: 50)
-        commentTextField.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: containerView.bottomAnchor, right: sendButton.leadingAnchor, paddingLeft: 12)
-        topSeparator.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, right: containerView.trailingAnchor, height: 0.5)
-        
-        return containerView
-    }()
-    
-    @objc func handleSend(){
-        guard let user = AuthService.instance.currentUser() else { return }
-        guard let postId = post?.id else { return }
-        guard let text = commentTextField.text, text.count > 0 else { return }
-        
-        let dictionary: [String : Any] = [
-            kTEXT : text,
-            kPOSTID : postId,
-            kCREATEDAT : Date()
-        ]
-        
-        guard let comment = Comment(dictionary: dictionary, _user: user) else { return }
-        CommentService.instance.saveCommentToFirestore(comment: comment) { (error) in
-            if error != nil {
-                return
-            }
-        }
-    }
-    
     let cellId = "CellId"
     var comments = [Comment]()
     
@@ -88,16 +43,6 @@ class CommentsController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
-    }
-    
-    override var inputAccessoryView: UIView? {
-        get {
-            return containerView
-        }
-    }
-    
-    override var canBecomeFirstResponder: Bool {
-        return true
     }
     
     func fetchComments() {
@@ -138,5 +83,35 @@ class CommentsController: UITableViewController {
         cell.comment = comments[indexPath.row]
         return cell
     }
+}
+
+extension CommentsController: CommentInputAccessoryViewDelegate {
     
+    override var inputAccessoryView: UIView? {
+        get {
+            return containerView
+        }
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    func didSubmit(for comment: String) {
+        guard let user = AuthService.instance.currentUser() else { return }
+        guard let postId = post?.id else { return }
+        
+        let dictionary: [String : Any] = [
+            kTEXT : comment,
+            kPOSTID : postId,
+            kCREATEDAT : Date()
+        ]
+        
+        guard let comment = Comment(dictionary: dictionary, _user: user) else { return }
+        CommentService.instance.saveCommentToFirestore(comment: comment) { (error) in
+            if error != nil {
+                return
+            }
+        }
+    }
 }
