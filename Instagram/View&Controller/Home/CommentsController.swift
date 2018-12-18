@@ -27,6 +27,8 @@ class CommentsController: UITableViewController {
         
         navigationItem.title = "Comments"
         
+        tableView.alwaysBounceVertical = true
+        tableView.keyboardDismissMode = .interactive
         tableView.register(CommentCell.self, forCellReuseIdentifier: cellId)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
@@ -112,6 +114,8 @@ extension CommentsController: CommentInputAccessoryViewDelegate {
             if error != nil {
                 return
             }
+            
+            self.containerView.clearCommentTextField()
         }
     }
 }
